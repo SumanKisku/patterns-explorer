@@ -1,17 +1,19 @@
 import PatternCard from "@/components/PatternCard";
-import { patterns } from "../data/patterns";
+import { getAllPatterns } from "@/lib/patterns";
 
 export default function Home() {
+  const patterns = getAllPatterns();
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 p-6">
-      {patterns.map((pattern) => (
+      {patterns.map(({ slug, metadata }, i) => (
         <PatternCard
-          key={pattern.id}
-          id={pattern.id}
-          name={pattern.name}
-          imageUrl={pattern.imageUrl}
+          key={i}
+          slug={slug}
+          name={metadata.name}
+          imageUrl={metadata.imageUrl}
         />
       ))}
+
     </div>
   );
 }
